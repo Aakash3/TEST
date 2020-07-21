@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+     <meta charset="utf-8"><!--■□■□■□■□ Encording Type ■□■□■□■□-->
+<title>Page Title</title>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+
+<h1>今日は（株）アルプス技研の勉強会です。</h1>
+<div id="degree">
+<button id="btn" type="button" class="btn btn-primary">Click Me!</button>
+<br>
+<br>
+<!-- ■□■□ -->
+<form action="/action.php">
+    <textarea name="text" id ="address" tabindex="10" cols="60" rows="10">
+
+    </textarea>
+    <br>
+      <button id="btn2" type="button" class="btn btn-primary" value="Submit">   BUTTON!   </button>
+
+<form>
+<!-- ■□■□  -->
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#btn").click(function () {
+            var person = new Object();
+            person.name = $('#name').val();
+            person.surname = $('#surname').val();
+            $.ajax({
+                url: 'https://api.darksky.net/forecast/240e7530a0b76917fa077170e30a4d7d/39.2868,141.1132?lang=ja&units=si',
+                type: 'GET',
+                dataType: 'jsonp',
+                data: person,
+                success: function (data, textStatus, xhr) {
+                //    console.log(data);
+
+                var temp=data.currently.apparentTemperature;
+                $("#degree").html("今日の温度は　"+temp +'°C');
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    console.log('Error in Operation');
+                }
+            });
+        });
+    });
+</script>
+</script>
+</body>
